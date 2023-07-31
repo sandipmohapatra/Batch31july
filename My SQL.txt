@@ -162,8 +162,21 @@ update employee set phy=67,chem=76,math=77 where empno=103;
 
 8) update employee set avg=total/3;
 
+---------------------------------------------------------------------------------
+create table student
+(studid int not null auto_increment,
+name varchar(30) not null,
+address varchar(30) not null,
+primary key(studid)
+);
+----------------------------------------------------------
+1)not null :- we cannot leave the field empty.
+2)auto_increment :- It will automatically increment.
+3)primary key :- We cannot leave the field empty and we have to enter unique value.
 
-
+----------------------------------------------------------------------------
+ insert into student(name,address) values('Madhu','Bangalore');
+---------------------------------------------------------------------------------------------
 
 
 
