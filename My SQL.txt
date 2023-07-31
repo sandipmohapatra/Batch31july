@@ -177,6 +177,73 @@ primary key(studid)
 ----------------------------------------------------------------------------
  insert into student(name,address) values('Madhu','Bangalore');
 ---------------------------------------------------------------------------------------------
+view :- you table contains 50 columns.
+10 columns regularly.
+
+you can do the DML operation on view .It will reflect the master table.
+1)insert 2)update 3)delete
+
+------------------------------------------------------------------------------------------------------
+JDBC :- java database connectivity
+
+1)load the driver (oracle driver,MySql driver)
+2)create connection
+i)Database name
+ii)username/password
+3)Statement/PreparedStatement (sql query)
+4)execute 
+------------------------------------------------------------------
+prg-1
+-------------
+import java.sql.*;
+public class First 
+{
+public static void main(String[] args) throws Exception
+{
+	Class.forName("com.mysql.jdbc.Driver");
+	Connection con=DriverManager.getConnection("jdbc:mysql://localhost:3306/itcinfotech","root","1234");
+	Statement st=con.createStatement();
+	//st.execute("create table student1(stdno int,name varchar(30),address varchar(30))");
+	//System.out.println("Table created");
+	st.execute("insert into student1 values(102,'kiran','Bangalore')");
+	System.out.println("row inserted");
+}
+}
+--------------------------------------------------------------------------------------------------------------
+prg-2
+------------
+import java.sql.*;
+import java.util.*;
+public class First 
+{
+public static void main(String[] args) throws Exception
+{
+	Scanner ob=new Scanner(System.in);
+	System.out.println("Enter studentno,name and address");
+	int stdno=ob.nextInt();
+	String name=ob.next();
+	String address=ob.next();
+	Class.forName("com.mysql.jdbc.Driver");
+	Connection con=DriverManager.getConnection("jdbc:mysql://localhost:3306/itcinfotech","root","1234");
+	PreparedStatement st=con.prepareStatement("insert into student1 values(?,?,?)");
+	st.setInt(1,stdno);
+	st.setString(2,name);
+	st.setString(3, address);
+	st.execute();
+	System.out.println("row inserted");
+}
+}
+--------------------------------------------------------------------------------------------
+
+
+
+
+
+
+
+
+
+
 
 
 
