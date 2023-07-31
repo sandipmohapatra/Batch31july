@@ -133,3 +133,48 @@ location VARCHAR(30) DEFAULT NULL,
 PRIMARY KEY(studid,NAME)
 );
 -----------------------------------------------------------------
+31st July 2023
+---------------------------
+create table
+1)create table employee(empno int,name varchar(30),address varchar(30));
+
+2)insert data
+insert into employee values(101,'sandip','Bangalore');
+
+3)select data
+select * from employee;
+select * from employee where empno=101;
+
+4)to add a column
+alter table employee add phy int;
+alter table employee add chem int;
+alter table employee add math int;
+
+5)insert the data into the columns
+update employee set phy=67,chem=76,math=77 where empno=101;
+update employee set phy=67,chem=76,math=77 where empno=102;
+update employee set phy=67,chem=76,math=77 where empno=103;
+
+6) alter table employee add total int;
+ alter table employee add avg int;
+
+7) update employee set total=phy+chem+math;
+
+8) update employee set avg=total/3;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
