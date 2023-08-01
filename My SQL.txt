@@ -234,7 +234,40 @@ public static void main(String[] args) throws Exception
 }
 }
 --------------------------------------------------------------------------------------------
+prg-3
+--------------
+import java.util.*;
+import org.bson.Document;
+import com.mongodb.MongoClient;
+import com.mongodb.client.MongoCollection;
+import com.mongodb.client.MongoDatabase;
 
+public class First {
+
+	public static void main(String[] args) {
+		try {
+			/*
+			 * Scanner ob=new Scanner(System.in); System.out.println("enter key and value");
+			 * String k1=ob.next(); String v1=ob.next();
+			 */
+			MongoClient mongoClient = new MongoClient( "localhost" , 27017 );  
+			//---------- Creating DataBase ---------------------------//  
+			MongoDatabase db = mongoClient.getDatabase("ITCinfoech");  
+			//---------- Creating Collection -------------------------//  
+			MongoCollection<Document> table = db.getCollection("employee");  
+			//---------- Creating Document ---------------------------//    
+			Document doc = new Document("Name","Arun");  
+			doc.append("id",12);  
+			doc.append("address","Bangalore");  
+			doc.append("Phoneno","9988776655");  
+						//----------- Inserting Data ------------------------------//  
+			table.insertOne(doc);  
+		}catch(Exception e){  
+			System.out.println(e);  
+		}  
+	}  
+}  
+-----------------------------------------------------------------------------------
 
 
 
