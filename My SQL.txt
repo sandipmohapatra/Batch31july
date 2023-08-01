@@ -268,8 +268,88 @@ public class First {
 	}  
 }  
 -----------------------------------------------------------------------------------
+prg-4
+-------------
+import com.mongodb.client.FindIterable; 
+import com.mongodb.client.MongoCollection; 
+import com.mongodb.client.MongoDatabase; 
+import com.mongodb.client.model.Filters; 
+import com.mongodb.client.model.Updates; 
+import java.util.Iterator;
+import org.bson.Document;
+import com.mongodb.MongoClient;
 
+public class Second {
 
+	public static void main(String[] args) 
+	{
+	
+
+			MongoClient mongoClient = new MongoClient( "localhost" , 27017 );  
+			//---------- Creating DataBase ---------------------------//  
+			MongoDatabase db = mongoClient.getDatabase("ITCinfoech");  
+			//---------- Creating Collection -------------------------//  
+			MongoCollection<Document> collection = db.getCollection("employee");  
+			
+			//---------- Creating Document ---------------------------//    
+			collection.updateOne(Filters.eq("id", 12), Updates.set("address", "TamilNadu"));  
+     
+		      System.out.println("Document update successfully...");  
+		      
+		      // Retrieving the documents after updation 
+		      // Getting the iterable object
+		      FindIterable<Document> iterDoc = collection.find(); 
+		      int i = 1; 
+		      // Getting the iterator 
+		      Iterator it = iterDoc.iterator(); 
+		      while (it.hasNext()) {  
+		         System.out.println(it.next());  
+		         i++; 
+		      }     
+		   }  
+	}
+------------------------------------------------------------------------------------------------------------------
+prg-5
+-------------
+import java.util.*;
+public class Six 
+{
+public static void main(String[] args)
+{
+ArrayList<String> al=new ArrayList<String>();
+al.add("Apple");
+al.add("Orange");
+al.add("Grapes");
+al.add("Mango");
+al.add("Banana");
+System.out.println(al);
+
+  System.out.println("****************"); 
+  for(String ab:al)
+  System.out.println(ab);
+  System.out.println("****************");
+  Iterator   it=al.iterator(); 
+  while(it.hasNext()) 
+  { 
+	  System.out.println(it.next());
+  }
+  System.out.println("****************");
+ 
+
+ListIterator it1=al.listIterator();
+while(it1.hasNext())
+{
+	System.out.println(it1.next());
+}
+
+ListIterator it2=al.listIterator();
+while(it2.hasPrevious())
+{
+	System.out.println(it2.previous());
+}
+}
+}
+------------------------------------------------------------------------------------------------------------------------------------
 
 
 
