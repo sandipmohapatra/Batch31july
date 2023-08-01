@@ -432,6 +432,50 @@ public class Fourth {
 		   } 
 		}
 ----------------------------------------------------------------------------------
+prg-9
+-----------
+package org.ITC;
+import java.util.*;
+import org.bson.Document;
+import com.mongodb.MongoClient;
+import com.mongodb.client.MongoCollection;
+import com.mongodb.client.MongoDatabase;
+public class Seven {
+	public static void main(String[] args) 
+	{
+		 Scanner ob=new Scanner(System.in); 
+				try {
+			  System.out.println("enter key and value");
+			  String k1=ob.next(); 
+			  String v1=ob.next();
+			  System.out.println("enter key and value");
+			  String k2=ob.next(); 
+			  String v2=ob.next();
+			  System.out.println("enter key and value");
+			  String k3=ob.next(); 
+			  String v3=ob.next();
+			  System.out.println("enter key and value");
+			  String k4=ob.next(); 
+			  String v4=ob.next();
+			  
+			MongoClient mongoClient = new MongoClient( "localhost" , 27017 );  
+			//---------- Creating DataBase ---------------------------//  
+			MongoDatabase db = mongoClient.getDatabase("ITCinfoech");  
+			//---------- Creating Collection -------------------------//  
+			MongoCollection<Document> table = db.getCollection("employee");  
+			//---------- Creating Document ---------------------------//    
+			Document doc = new Document(k1,v1);  
+			doc.append(k2,v2);  
+			doc.append(k3,v3);  
+			doc.append(k4,v4);  
+						//----------- Inserting Data ------------------------------//  
+			table.insertOne(doc);  
+		}catch(Exception e){  
+			System.out.println(e);  
+					}  
+	}
+	}
+----------------------------------------------------------------------------------------
 
 
 
