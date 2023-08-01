@@ -476,7 +476,50 @@ public class Seven {
 	}
 	}
 ----------------------------------------------------------------------------------------
-
+prg-10
+----------
+import java.sql.*;
+import java.util.*;
+public class Second 
+{
+public static void main(String[] args) throws Exception
+{
+	Scanner ob=new Scanner(System.in);
+	System.out.println("Enter studentno,name and address");
+	int stdno=ob.nextInt();
+	String name=ob.next();
+	String address=ob.next();
+	Class.forName("com.mysql.jdbc.Driver");
+	Connection con=DriverManager.getConnection("jdbc:mysql://localhost:3306/itcinfotech","root","1234");
+	PreparedStatement st=con.prepareStatement("update student1 set name=?,address=? where stdno=?");
+	st.setString(1,name);
+	st.setString(2, address);
+	st.setInt(3,stdno);
+	st.execute();
+	System.out.println("row updated");
+}
+}
+---------------------------------------------------------------------------------------------------------------------
+prg-11
+------------
+import java.sql.*;
+import java.util.*;
+public class Third 
+{
+public static void main(String[] args) throws Exception
+{
+	Scanner ob=new Scanner(System.in);
+	System.out.println("Enter studentno");
+	int stdno=ob.nextInt();
+	Class.forName("com.mysql.jdbc.Driver");
+	Connection con=DriverManager.getConnection("jdbc:mysql://localhost:3306/itcinfotech","root","1234");
+	PreparedStatement st=con.prepareStatement("delete from student1 where stdno=?");
+	st.setInt(1,stdno);
+	st.execute();
+	System.out.println("row deleted");
+}
+}
+--------------------------------------------------------------------------------------------
 
 
 
