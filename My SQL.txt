@@ -341,12 +341,13 @@ while(it1.hasNext())
 {
 	System.out.println(it1.next());
 }
-
-ListIterator it2=al.listIterator();
-while(it2.hasPrevious())
+System.out.println("****************");
+while(it1.hasPrevious())
 {
-	System.out.println(it2.previous());
+	System.out.println(it1.previous());
 }
+
+
 }
 }
 ------------------------------------------------------------------------------------------------------------------------------------
