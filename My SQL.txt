@@ -352,6 +352,86 @@ while(it1.hasPrevious())
 }
 ------------------------------------------------------------------------------------------------------------------------------------
 
+prg-6
+-------------
+import com.mongodb.client.FindIterable; 
+import com.mongodb.client.MongoCollection; 
+import com.mongodb.client.MongoDatabase; 
+import com.mongodb.client.model.Filters; 
+import com.mongodb.client.model.Updates; 
+import java.util.Iterator;
+import org.bson.Document;
+import com.mongodb.MongoClient;
+
+public class Third {
+
+	public static void main(String[] args) 
+	{
+	
+
+			MongoClient mongoClient = new MongoClient( "localhost" , 27017 );  
+			//---------- Creating DataBase ---------------------------//  
+			MongoDatabase db = mongoClient.getDatabase("ITCinfo");  
+			//---------- Creating Collection -------------------------//  
+			MongoCollection<Document> collection = db.getCollection("employee");  
+			//---------- Creating Document ---------------------------//    
+			collection.deleteOne(Filters.eq("name", "Sandip Mohapatra")); 
+		      System.out.println("Document deleted successfully...");  
+		      
+		      // Retrieving the documents after updation 
+		      // Getting the iterable object 
+		      FindIterable<Document> iterDoc = collection.find(); 
+		      int i = 1; 
+		      // Getting the iterator 
+		      Iterator it = iterDoc.iterator(); 
+		      while (it.hasNext()) {  
+		         System.out.println(it.next());  
+		         i++; 
+		      }       
+		   } 
+		}
+-------------------------------------------------------------------------
+prg-7
+----------------------
+import com.mongodb.client.MongoCollection; 
+import com.mongodb.client.MongoDatabase; 
+import org.bson.Document;
+import com.mongodb.MongoClient;
+
+public class Five {
+
+	public static void main(String[] args) 
+	{
+				MongoClient mongoClient = new MongoClient( "localhost" , 27017 );  
+			//---------- Creating DataBase ---------------------------//  
+			MongoDatabase db = mongoClient.getDatabase("ITCinfo");  
+						for (String name : db.listCollectionNames()) { 
+		         System.out.println(name); 
+		      } 
+		   } 
+		}
+-------------------------------------------------------------------
+prg-8
+--------------
+import com.mongodb.client.MongoCollection; 
+import com.mongodb.client.MongoDatabase; 
+import org.bson.Document;
+import com.mongodb.MongoClient;
+
+public class Fourth {
+
+	public static void main(String[] args) 
+	{
+				MongoClient mongoClient = new MongoClient( "localhost" , 27017 );  
+			//---------- Creating DataBase ---------------------------//  
+			MongoDatabase db = mongoClient.getDatabase("ITCinfo");  
+			//---------- Creating Collection -------------------------//  
+			MongoCollection<Document> collection = db.getCollection("employee");  
+			       collection.drop(); 
+		      System.out.println("Collection dropped successfully");
+		   } 
+		}
+----------------------------------------------------------------------------------
 
 
 
