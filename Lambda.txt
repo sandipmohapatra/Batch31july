@@ -23,7 +23,7 @@ void applyforCreditCard();
 *by using lambda expression we will make the interface as functional.
 ----------------------------------------------------------------------
 There are 3 new components in it.
-1)Arguument-list:-It can be empty or have parameters.
+1)Argument-list:-It can be empty or have parameters.
 (),->,{body}
 2)Arrow-token:- It is used to link arguments-list and body of the expression.
 3)Body:- It contains the expression and statement .
@@ -288,3 +288,75 @@ public class LambdaExpressionExample9
     }  
 }  
 ------------------------------------------------------------------------------------------------------------
+example-2
+---------------------
+import java.util.*;
+@FunctionalInterface
+interface ex2
+{		public int square(int a);	}
+interface ex3
+{		public int cube(int a);	}
+interface ex4
+{		public int greater(int a,int b);	}
+
+interface ex5
+{		public int greater3(int a,int b,int c);	}
+
+public class Lambda3
+{
+	public static void main(String[] args) 
+	{		
+		@SuppressWarnings("resource")
+		Scanner ob=new Scanner(System.in);
+		System.out.println("Enter 2 numbers for finding square and cube");
+		int s=ob.nextInt();
+		int c=ob.nextInt();
+		System.out.println("Enter two numbers to find the greatest");
+		int a=ob.nextInt();
+		int b=ob.nextInt();
+		System.out.println("Enter three numbers to find the greatest");
+		int d=ob.nextInt();
+		int e=ob.nextInt();
+		int f=ob.nextInt();
+		
+			ex2 ob1=(y)->
+	{		return y*y;	};
+	System.out.println("The sqaure is "+ob1.square(s));
+	ex3 ob2=(z)->
+	{		return z*z*z;	};
+	System.out.println("The cube is "+ob2.cube(c));	
+	
+	ex4 ob3=(p,q)->
+	{	
+		if(p>q)	
+			return p;
+		else
+			return q;
+	};
+	System.out.println("The greatest is "+ob3.greater(a,b));	
+
+	ex5 ob4=(p,q,r)->
+	{	
+		if(p>q && p>r) 	
+			return p;
+		else if(q>r && q>p)
+			return q;
+		else
+			return r;
+	};
+	System.out.println("The greatest is "+ob4.greater3(d,e,f));	
+
+	
+	}}
+
+------------------------------------------------------------------------------------------------
+
+
+
+
+
+
+
+
+
+
