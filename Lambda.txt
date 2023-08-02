@@ -1,0 +1,290 @@
+Lambda Expression
+--------------------------------
+It is also known as functional interface.
+In this the interface will only contain one abstract method so it is called functional interface.
+In lambda expression we don't require 2 classes (parent and child).we don't have to override.we don't have to implement the interface.
+There is a anotation @FunctionalInterface.
+It is used to declare an interface as functional interface.(optional)
+------------------------------------------------------------------------
+@Override :- It was introduced from jdk1.5.It will match the methods of the parent class and the child class.
+both method name and the signatures(return type,parameter) should match.(optional)
+-------------------------------------------------------------------------
+what is the use of lambda expression
+1)The code is reduced in this.
+2)To provide the implementation of functional interface.
+3)Generally a interface is non-functional we have to override into the child class and introduce some functionality.
+example:- 
+interface bank
+{
+void loan();  <------these are non-functional
+void applyforCreditCard();
+}
+------------------------------------------------------------------
+*by using lambda expression we will make the interface as functional.
+----------------------------------------------------------------------
+There are 3 new components in it.
+1)Arguument-list:-It can be empty or have parameters.
+(),->,{body}
+2)Arrow-token:- It is used to link arguments-list and body of the expression.
+3)Body:- It contains the expression and statement .
+--------------------------------------------------------------------------------------------
+()->{System.out.println("Hello");} //no parameter
+----------------------------------------------------------------
+(a)->{System.out.println("Hello");} //single parameter
+----------------------------------------------------------------
+(a,b)->{System.out.println("Hello");} //multiple parameter
+----------------------------------------------------------------
+program-34
+--------------------
+package Friday;
+@FunctionalInterface
+interface example1
+{
+	public void display();  //only one abstract method
+}
+public class Lambda1
+{
+public static void main(String[] args) 
+{
+int length=10;
+int breadth=20;
+example1 obj=()->
+{
+	System.out.println("the length is "+length);
+	System.out.println("the breadth is "+breadth);
+	System.out.println("the area is "+(length*breadth));
+};
+obj.display();
+}
+}
+------------------------------------------------------------------------------------
+program-35
+-------------------
+package Friday;
+@FunctionalInterface
+interface example1
+{
+	public void display(); //only one method
+}
+@FunctionalInterface
+interface example2
+{
+	public String name();
+}
+
+@FunctionalInterface
+interface example3
+{
+	public String address(String loc);
+}
+@FunctionalInterface
+interface example4
+{
+	public int sum(int a,int b);
+}
+
+public class Lambda1
+{
+public static void main(String[] args) 
+{
+int length=10;
+int breadth=20;
+example1 obj=()->     //display method defined
+{
+	System.out.println("the length is "+length);
+	System.out.println("the breadth is "+breadth);
+	System.out.println("the area is "+(length*breadth));
+};
+obj.display();
+
+example2 obj1=()->
+{
+	return "Lambda Expression";
+};
+System.out.println(obj1.name());
+
+example3 obj2=(loc)->
+{
+	return "My Loaction is :"+loc;
+};
+System.out.println(obj2.address("Bangalore"));
+
+example4 obj3=(a,b)->(a+b);
+System.out.println("the sum is "+obj3.sum(400,500));
+
+}
+}
+---------------------------------------------------------------------------------------
+package Friday;
+@FunctionalInterface
+interface example1
+{
+	public void display(); //only one method
+}
+@FunctionalInterface
+interface example2
+{
+	public String name();
+}
+
+@FunctionalInterface
+interface example3
+{
+	public String address(String loc);
+}
+@FunctionalInterface
+interface example4
+{
+	public int sum(int a,int b);
+}
+
+public class Lambda1
+{
+public static void main(String[] args) 
+{
+int length=10;
+int breadth=20;
+example1 obj=()->     //display method defined
+{
+	System.out.println("the length is "+length);
+	System.out.println("the breadth is "+breadth);
+	System.out.println("the area is "+(length*breadth));
+};
+obj.display();
+
+example2 obj1=()->
+{
+	return "Lambda Expression";
+};
+System.out.println(obj1.name());
+
+example3 obj2=(loc)->
+{
+	return "My Loaction is :"+loc;
+};
+System.out.println(obj2.address("Bangalore"));
+
+example4 obj3=(a,b)->
+{
+return a+b;
+};
+System.out.println("the sum is "+obj3.sum(400,500));
+}}
+-----------------------------------------------
+package ThreadDemos;
+import java.util.*;  
+public class LambdaExpressionExample7
+{  
+    public static void main(String[] args)
+ {  
+          
+        ArrayList<String> list=new ArrayList<String>();  
+        list.add("Sandip");  
+        list.add("Kiran");  
+        list.add("Sunil");  
+        list.add("Avinab");  
+        list.add("Anil");  
+        list.add("Amit"); 
+        
+        list.forEach((n)->System.out.println(n));  
+    }  
+}  
+---------------------------------------------------------------------------------------------------------------------------
+package monday;
+import java.util.*;
+public class ListDemo
+{
+public static void main(String[] args)
+{
+LinkedList<String> ls=new LinkedList<String>();
+ls.add("Trupti");
+ls.add("Shubham");
+ls.add("Madhu");
+ls.add("Geetanjali");
+ls.add("Sunil");
+ls.add("Deepak");
+Collections.sort(ls);
+ls.forEach((x)->System.out.println(x));
+}
+}
+-------------------------------------------------------------------------------------------------------------
+package monday;
+import java.util.*;
+public class ListDemo
+{
+public static void main(String[] args)
+{
+LinkedList<Integer> ls=new LinkedList<Integer>();
+ls.add(10);
+ls.add(40);
+ls.add(30);
+ls.add(20);
+ls.add(50);
+Collections.sort(ls);
+ls.forEach((x)->System.out.println(x));
+System.out.println("the largest no is "+Collections.max(ls));
+System.out.println("the smallest no is "+Collections.min(ls));
+}
+}
+---------------------------------------------------------------------------------------------
+package monday;
+import java.util.*;
+public class ListDemo
+{
+public static void main(String[] args)
+{
+ArrayList<Integer> ls=new ArrayList<Integer>();
+ls.add(10);
+ls.add(40);
+ls.add(30);
+ls.add(20);
+ls.add(50);
+Collections.sort(ls,Collections.reverseOrder());
+ls.forEach((x)->System.out.println(x));
+}
+}
+------------------------------------------------------------------------------------------
+
+package ThreadDemos;
+public class LambdaExpressionExample9
+{  
+    public static void main(String[] args)throws Exception
+    {  
+      
+        //Thread Example without lambda  
+        Runnable r1=new Runnable(){  
+            public void run()
+            {  
+                System.out.println("Thread1 is running...");  
+                try {
+                	for(int i=1;i<=10;i++)
+                	{
+                		System.out.println(i);
+					Thread.sleep(1000);
+                	}
+				} catch (InterruptedException e) 
+                {
+								e.printStackTrace();
+				}
+            }  
+        };  
+        Thread t1=new Thread(r1);  
+        t1.start();  
+        //Thread Example with lambda  
+        Runnable r2=()->{  
+                System.out.println("Thread2 is running...");  
+                try {
+                	for(int i=1;i<=10;i++)
+                	{
+                		System.out.println(i);
+					Thread.sleep(1000);
+                	}
+				} catch (InterruptedException e) {
+					e.printStackTrace();
+				}
+        };  
+        Thread t2=new Thread(r2);  
+        t2.start();  
+    }  
+}  
+------------------------------------------------------------------------------------------------------------
