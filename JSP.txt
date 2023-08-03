@@ -58,6 +58,111 @@ catch(Exception ae)
 %>
 
 -------------------------------------------------------------------------------------------------------------------------------
+Final JSP
+-------------------
+<html>
+<body bgcolor=cyan>
+<h1><center>LIBRARY MANAGEMENT SYSTEM</center></h1><hr color=red>
+<form action="second.jsp">
+<table>
+<tr><td>Enter Bookno<td><input type=text name=t1 size=20></tr>
+<tr><td>Enter Bookname<td><input type=text name=t2 size=20></tr>
+<tr><td>Enter Publisher name<td><input type=text name=t3 size=20></tr>
+<tr><td>Enter Author Name<td><input type=text name=t4 size=20></tr>
+<tr><td>Enter Date of Issue<td><input type=date name=t5 size=20></tr>
+<tr><td><td>
+<input type=submit value=insert name=b1>
+<input type=submit value=update name=b1>
+<input type=submit value=delete name=b1>
+<input type=submit value=select name=b1>
+</tr>
+</table>
+</form>
+</body>
+</html>
+
+<!-- create table library(bookno varchar(30), bname varchar(30),pname varchar(30),aname varchar(30),
+DOI varchar(30)); -->
+
+--------------------------------------------------------------------------------------
+second.jsp
+---------------
+<%@page import="java.sql.*" %>
+<%String a=request.getParameter("t1");
+String b=request.getParameter("t2");
+String c=request.getParameter("t3");
+String d=request.getParameter("t4");
+String e=request.getParameter("t5");
+String but=request.getParameter("b1");
+%>
+<!-- 
+<%out.println("The bookno is "+a);
+out.println("<br>");
+out.println("The book name is "+b);
+out.println("<br>");
+out.println("The Publisher name is "+c);
+out.println("<br>");
+out.println("The Author Name is "+d);
+out.println("<br>");
+out.println("The Date of Issue is "+e);
+out.println("<br>");
+out.println("The button is "+but);
+%>
+ -->
+<%
+try
+{
+	Class.forName("com.mysql.jdbc.Driver");
+	Connection con=DriverManager.getConnection("jdbc:mysql://localhost:3306/itcinfotech","root","1234");
+	if(but.equals("insert"))
+	{
+	PreparedStatement st=con.prepareStatement("insert into library values(?,?,?,?,?)");
+	st.setString(1,a);	st.setString(2,b);
+	st.setString(3,c);	st.setString(4,d);
+	st.setString(5,e);	st.execute();
+    out.println("row inserted");
+	}
+	else if(but.equals("update"))
+	{
+	PreparedStatement st=con.prepareStatement("update library set bname=?,pname=?,aname=?,DOI=? where bookno=?");
+	st.setString(1,b);
+	st.setString(2,c);	st.setString(3,d);
+	st.setString(4,e);	st.setString(5,a);
+	st.execute();
+    out.println("row update");
+	}
+	else if(but.equals("delete"))
+	{
+	PreparedStatement st=con.prepareStatement("delete from library where bookno=?");
+	st.setString(1,a);		st.execute();
+    out.println("row deleted");
+	}
+	else 
+	{
+		PreparedStatement st=con.prepareStatement("select * from library");
+	ResultSet rs=st.executeQuery();
+	out.println("<table border=1>");
+	out.println("<tr><th>Book No<th>Book Name<th>Book Publisher<th>Book Author<th>Date of Issue</tr>");
+	while(rs.next())
+	{
+	out.println("<tr><td>"+rs.getString(1)+"<td> "+rs.getString(2)+"<td> "+rs.getString(3)+"<td> "+rs.getString(4)+"<td> "+rs.getString(5)+"</tr>");	
+	}
+	out.println("</table>");
+			}
+	}
+catch(Exception ae)
+{	ae.printStackTrace();}
+%>
+
+------------------------------------------------------------------------------------------------------------
+
+
+
+
+
+
+
+
 
 
 
