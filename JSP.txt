@@ -23,6 +23,8 @@ First.html
     -> DOI varchar(30)); -->
 
 ------------------------------------------------------------------------------------------------------------------
+second.jsp
+-----------------------
 <%@page import="java.sql.*" %>
 <%String a=request.getParameter("t1");
 String b=request.getParameter("t2");
