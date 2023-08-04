@@ -704,10 +704,106 @@ System.out.println(md.getDriverVersion());
 System.out.println(md.getDriverName());
 -----------------------------------------------------------------------------
 
+joining 2 tables
+--------------------------
+select a.empno,a.name,a.address,a.phy,a.chem,a.math,a.total,a.avg,b.studid from employee a,student b where a.name=b.name;
+-------------------------------------------------------------------------------------------------------
+create a view
+----------------------------
+create view abc as select a.empno,a.name,a.address,a.phy,a.chem,a.math,a.total,a.avg,b.studid from employee a,
+student b where a.name=b.name;
+------------------------------------------------------------------------------------------
+distinct :- it will not display duplicate records
+-------------------------------------------------------
+select distinct address from student;
+------------------------------------------------------------------------------
+order by:- asc,desc and default it is asc;
 
+select * from student order by name;
+select * from student order by name desc;
+------------------------------------------------------------------------------------------
+clone a table
+--------------------
+create table student2 as select * from student;
 
+--------------------------------------------------------------
+group by
+------------------
+select * from student;
++--------+--------+-----------+
+| studid | name   | address   |
++--------+--------+-----------+
+|      1 | sandip | Bangalore |
+|      2 | kiran  | Bangalore |
+|      3 | Madhu  | Bangalore |
+|      4 | Madhu  | Bangalore |
+|      5 | sunil  | TamilNadu |
+|      6 | anil   | TamilNadu |
+|      7 | Roshun | TamilNadu |
++--------+--------+-----------+
+7 rows in set (0.00 sec)
 
+mysql> select address,count(*) from student group by address;
+-----------------------------------------------------------
+mysql> update student set salary=25000 where studid in(1,2,3,4);
+Query OK, 4 rows affected (0.26 sec)
+Rows matched: 4  Changed: 4  Warnings: 0
 
+mysql> update student set salary=27000 where studid in(5,6,7);
+Query OK, 3 rows affected (0.06 sec)
+Rows matched: 3  Changed: 3  Warnings: 0
+
+mysql> select * from student;
++--------+--------+-----------+--------+
+| studid | name   | address   | salary |
++--------+--------+-----------+--------+
+|      1 | sandip | Bangalore |  25000 |
+|      2 | kiran  | Bangalore |  25000 |
+|      3 | Madhu  | Bangalore |  25000 |
+|      4 | Madhu  | Bangalore |  25000 |
+|      5 | sunil  | TamilNadu |  27000 |
+|      6 | anil   | TamilNadu |  27000 |
+|      7 | Roshun | TamilNadu |  27000 |
++--------+--------+-----------+--------+
+7 rows in set (0.00 sec)
+
+mysql> select address,sum(salary) from student group by address;
++-----------+-------------+
+| address   | sum(salary) |
++-----------+-------------+
+| Bangalore |      100000 |
+| TamilNadu |       81000 |
++-----------+-------------+
+2 rows in set (0.12 sec)
+
+mysql> select address,max(salary) from student group by address;
++-----------+-------------+
+| address   | max(salary) |
++-----------+-------------+
+| Bangalore |       25000 |
+| TamilNadu |       27000 |
++-----------+-------------+
+2 rows in set (0.38 sec)
+
+mysql> select address,min(salary) from student group by address;
++-----------+-------------+
+| address   | min(salary) |
++-----------+-------------+
+| Bangalore |       25000 |
+| TamilNadu |       27000 |
++-----------+-------------+
+2 rows in set (0.00 sec)
+
+mysql> select address,avg(salary) from student group by address;
++-----------+-------------+
+| address   | avg(salary) |
++-----------+-------------+
+| Bangalore |  25000.0000 |
+| TamilNadu |  27000.0000 |
++-----------+-------------+
+2 rows in set (0.00 sec)
+
+mysql> select * from student;
 
 
 
