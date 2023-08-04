@@ -1,0 +1,21 @@
+DevOps:- Development + operations
+--------------------------------------------------
+1)git(local repository)/github(global repository)
+From the local repository we have to send it to the global repository.
+where every one can access.
+
+2)Maven :- we require jar files for our applications.we have to download from google.But by using maven it will automatically download from the maven repository.
+
+3)Docker:- It is used to create image file(build) which has to be given to the clients.
+example:- windows11.
+It is a container where we will install os,jdk,tomcat,mysql then our application will be executed over it and a image file is created.That image file is given to the client.
+
+4)jenkin :- The build or the image file is tested CI/CD.Then it is given to the clients.
+
+5)Agile :-project is divided into sprint and we have to release the sprint in frequent intervals.
+---------------------------------------------------------------------------------------------------------------- 
+Maven :-
+File --->new --->Maven Project--->create a simple project
+
+
+
