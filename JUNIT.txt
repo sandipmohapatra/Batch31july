@@ -51,6 +51,12 @@ public void stringTest1()
 	String s2="Hello";
 	assertSame(s1,s2);
 }
+@Test
+public void operations()
+{
+	assertEquals(25,cal.add(20, 5));
+	assertEquals(25,cal.sub(30, 5));
+}
 }
 ----------------------------------------------------------------------------------
 example-2
