@@ -1,0 +1,53 @@
+example-1
+--------------------
+public class Calculator 
+{
+public int square(int i)
+{
+	return i*i;
+}
+public String user(String string)
+{
+	return "Shubham";
+}
+public int sub(int i,int j)
+{
+	return i-j;
+}
+public int add(int i,int j)
+{
+	return i+j;
+}
+public String concat(String string1,String string2)
+{
+	return string1+string2;
+}
+}
+----------------------------------------------------------------------------
+import static org.junit.Assert.*;
+import org.junit.Test;
+public class CalculatorTest
+{
+Calculator cal=new Calculator();
+@Test  //used to identify that a method is a test method
+public void testSquare()
+{
+assertEquals(25,cal.square(5));
+assertEquals(36,cal.square(6));
+}
+@Test
+public void testUser()
+{
+	assertEquals("Shubham",cal.user("Shubham"));
+}
+@Test
+public void stringTest1()
+{
+	String result=cal.concat("Hello", "EveryOne");
+	assertEquals("HelloEveryOne",result);
+	String s1="Hello";
+	String s2="Hello";
+	assertSame(s1,s2);
+}
+}
+----------------------------------------------------------------------------------
