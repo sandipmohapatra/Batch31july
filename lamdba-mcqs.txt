@@ -1,0 +1,98 @@
+What is a lambda expression in Java?
+
+A) A new data type to represent anonymous classes.
+B) A mechanism to perform multi-threading operations.
+C) A shorthand notation for defining anonymous functions or inline implementations of functional interfaces.
+D) A way to implement encapsulation in Java.
+
+Question 2:
+Which functional interface is used to represent a lambda expression that takes no parameters and returns no value (void)?
+
+A) Function<T, R>
+B) Supplier<T>
+C) Runnable
+D) Consumer<T>
+
+Question 3:
+How do you represent a lambda expression with a single parameter in Java?
+
+A) (param) -> { // code here }
+B) param => { // code here }
+C) (param) => { // code here }
+D) param -> { // code here }
+
+Question 4:
+In which Java version were lambda expressions introduced?
+
+A) Java 6
+B) Java 7
+C) Java 8
+D) Java 9
+
+Question 5:
+Which of the following is NOT a valid functional interface in Java?
+
+A) Function<T, R>
+B) UnaryOperator<T>
+C) BiConsumer<T, U>
+D) DoubleFunction<R>
+
+Question 6:
+Which functional interface is used to represent a lambda expression that takes two parameters of the same type and returns a boolean result?
+
+A) BiFunction<T, U, R>
+B) BinaryOperator<T>
+C) Predicate<T>
+D) BiPredicate<T, U>
+
+Question 7:
+Can a lambda expression access non-final local variables from its enclosing scope in Java?
+
+A) Yes, it can.
+B) No, it cannot.
+C) Only if the variable is declared within the lambda expression itself.
+D) Only if the variable is marked as private.
+
+Question 8:
+Which of the following is NOT a valid way to pass a lambda expression as an argument to a method in Java?
+
+A) By using a method reference.
+B) By explicitly casting the lambda to a functional interface type.
+C) By using the eval method of the Lambda class.
+D) By using an anonymous inner class.
+
+Question 9:
+Which functional interface should be used to represent a lambda expression that performs some computation and returns a result of the same type as the input?
+
+A) Function<T, R>
+B) Predicate<T>
+C) UnaryOperator<T>
+D) Supplier<T>
+
+Question 10:
+What does the following lambda expression represent in Java?
+
+java
+Copy code
+(number) -> number * number
+A) A lambda expression that takes a single integer parameter and returns its square.
+B) A lambda expression that takes two integer parameters and returns their product.
+C) A lambda expression that takes a single integer parameter and returns the square root.
+D) A lambda expression that takes two integer parameters and returns their sum.
+
+Answers:
+
+C
+C
+D
+C
+D
+C
+A
+C
+C
+A
+
+
+
+
