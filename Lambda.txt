@@ -1,0 +1,408 @@
+Lambda Expression
+--------------------------------
+It is also known as functional interface.
+In this the interface will only contain one abstract method so it is called functional interface.
+In lambda expression we don't require 2 classes (parent and child).we don't have to override.we don't have to implement the interface.
+There is a anotation @FunctionalInterface.
+It is used to declare an interface as functional interface.(optional)
+------------------------------------------------------------------------
+@Override :- It was introduced from jdk1.5.It will match the methods of the parent class and the child class.
+both method name and the signatures(return type,parameter) should match.(optional)
+-------------------------------------------------------------------------
+what is the use of lambda expression
+1)The code is reduced in this.
+2)To provide the implementation of functional interface.
+3)Generally a interface is non-functional we have to override into the child class and introduce some functionality.
+example:- 
+interface bank
+{
+void loan();  <------these are non-functional
+void applyforCreditCard();
+}
+------------------------------------------------------------------
+*by using lambda expression we will make the interface as functional.
+----------------------------------------------------------------------
+There are 3 new components in it.
+1)Argument-list:-It can be empty or have parameters.
+(),->,{body}
+2)Arrow-token:- It is used to link arguments-list and body of the expression.
+3)Body:- It contains the expression and statement .
+--------------------------------------------------------------------------------------------
+()->{System.out.println("Hello");} //no parameter
+----------------------------------------------------------------
+(a)->{System.out.println("Hello");} //single parameter
+----------------------------------------------------------------
+(a,b)->{System.out.println("Hello");} //multiple parameter
+----------------------------------------------------------------
+program-34
+--------------------
+package Friday;
+@FunctionalInterface
+interface example1
+{
+	public void display();  //only one abstract method
+}
+public class Lambda1
+{
+public static void main(String[] args) 
+{
+int length=10;
+int breadth=20;
+example1 obj=()->
+{
+	System.out.println("the length is "+length);
+	System.out.println("the breadth is "+breadth);
+	System.out.println("the area is "+(length*breadth));
+};
+obj.display();
+}
+}
+------------------------------------------------------------------------------------
+program-35
+-------------------
+package Friday;
+@FunctionalInterface
+interface example1
+{
+	public void display(); //only one method
+}
+@FunctionalInterface
+interface example2
+{
+	public String name();
+}
+
+@FunctionalInterface
+interface example3
+{
+	public String address(String loc);
+}
+@FunctionalInterface
+interface example4
+{
+	public int sum(int a,int b);
+}
+
+public class Lambda1
+{
+public static void main(String[] args) 
+{
+int length=10;
+int breadth=20;
+example1 obj=()->     //display method defined
+{
+	System.out.println("the length is "+length);
+	System.out.println("the breadth is "+breadth);
+	System.out.println("the area is "+(length*breadth));
+};
+obj.display();
+
+example2 obj1=()->
+{
+	return "Lambda Expression";
+};
+System.out.println(obj1.name());
+
+example3 obj2=(loc)->
+{
+	return "My Loaction is :"+loc;
+};
+System.out.println(obj2.address("Bangalore"));
+
+example4 obj3=(a,b)->(a+b);
+System.out.println("the sum is "+obj3.sum(400,500));
+
+}
+}
+---------------------------------------------------------------------------------------
+package Friday;
+@FunctionalInterface
+interface example1
+{
+	public void display(); //only one method
+}
+@FunctionalInterface
+interface example2
+{
+	public String name();
+}
+
+@FunctionalInterface
+interface example3
+{
+	public String address(String loc);
+}
+@FunctionalInterface
+interface example4
+{
+	public int sum(int a,int b);
+}
+
+public class Lambda1
+{
+public static void main(String[] args) 
+{
+int length=10;
+int breadth=20;
+example1 obj=()->     //display method defined
+{
+	System.out.println("the length is "+length);
+	System.out.println("the breadth is "+breadth);
+	System.out.println("the area is "+(length*breadth));
+};
+obj.display();
+
+example2 obj1=()->
+{
+	return "Lambda Expression";
+};
+System.out.println(obj1.name());
+
+example3 obj2=(loc)->
+{
+	return "My Loaction is :"+loc;
+};
+System.out.println(obj2.address("Bangalore"));
+
+example4 obj3=(a,b)->
+{
+return a+b;
+};
+System.out.println("the sum is "+obj3.sum(400,500));
+}}
+-----------------------------------------------
+package ThreadDemos;
+import java.util.*;  
+public class LambdaExpressionExample7
+{  
+    public static void main(String[] args)
+ {  
+          
+        ArrayList<String> list=new ArrayList<String>();  
+        list.add("Sandip");  
+        list.add("Kiran");  
+        list.add("Sunil");  
+        list.add("Avinab");  
+        list.add("Anil");  
+        list.add("Amit"); 
+        
+        list.forEach((n)->System.out.println(n));  
+    }  
+}  
+---------------------------------------------------------------------------------------------------------------------------
+package monday;
+import java.util.*;
+public class ListDemo
+{
+public static void main(String[] args)
+{
+LinkedList<String> ls=new LinkedList<String>();
+ls.add("Trupti");
+ls.add("Shubham");
+ls.add("Madhu");
+ls.add("Geetanjali");
+ls.add("Sunil");
+ls.add("Deepak");
+Collections.sort(ls);
+ls.forEach((x)->System.out.println(x));
+}
+}
+-------------------------------------------------------------------------------------------------------------
+package monday;
+import java.util.*;
+public class ListDemo
+{
+public static void main(String[] args)
+{
+LinkedList<Integer> ls=new LinkedList<Integer>();
+ls.add(10);
+ls.add(40);
+ls.add(30);
+ls.add(20);
+ls.add(50);
+Collections.sort(ls);
+ls.forEach((x)->System.out.println(x));
+System.out.println("the largest no is "+Collections.max(ls));
+System.out.println("the smallest no is "+Collections.min(ls));
+}
+}
+---------------------------------------------------------------------------------------------
+package monday;
+import java.util.*;
+public class ListDemo
+{
+public static void main(String[] args)
+{
+ArrayList<Integer> ls=new ArrayList<Integer>();
+ls.add(10);
+ls.add(40);
+ls.add(30);
+ls.add(20);
+ls.add(50);
+Collections.sort(ls,Collections.reverseOrder());
+ls.forEach((x)->System.out.println(x));
+}
+}
+------------------------------------------------------------------------------------------
+
+package ThreadDemos;
+public class LambdaExpressionExample9
+{  
+    public static void main(String[] args)throws Exception
+    {  
+      
+        //Thread Example without lambda  
+        Runnable r1=new Runnable(){  
+            public void run()
+            {  
+                System.out.println("Thread1 is running...");  
+                try {
+                	for(int i=1;i<=10;i++)
+                	{
+                		System.out.println(i);
+					Thread.sleep(1000);
+                	}
+				} catch (InterruptedException e) 
+                {
+								e.printStackTrace();
+				}
+            }  
+        };  
+        Thread t1=new Thread(r1);  
+        t1.start();  
+        //Thread Example with lambda  
+        Runnable r2=()->{  
+                System.out.println("Thread2 is running...");  
+                try {
+                	for(int i=1;i<=10;i++)
+                	{
+                		System.out.println(i);
+					Thread.sleep(1000);
+                	}
+				} catch (InterruptedException e) {
+					e.printStackTrace();
+				}
+        };  
+        Thread t2=new Thread(r2);  
+        t2.start();  
+    }  
+}  
+------------------------------------------------------------------------------------------------------------
+example-2
+---------------------
+import java.util.*;
+@FunctionalInterface
+interface ex2
+{		public int square(int a);	}
+interface ex3
+{		public int cube(int a);	}
+interface ex4
+{		public int greater(int a,int b);	}
+
+interface ex5
+{		public int greater3(int a,int b,int c);	}
+
+public class Lambda3
+{
+	public static void main(String[] args) 
+	{		
+		@SuppressWarnings("resource")
+		Scanner ob=new Scanner(System.in);
+		System.out.println("Enter 2 numbers for finding square and cube");
+		int s=ob.nextInt();
+		int c=ob.nextInt();
+		System.out.println("Enter two numbers to find the greatest");
+		int a=ob.nextInt();
+		int b=ob.nextInt();
+		System.out.println("Enter three numbers to find the greatest");
+		int d=ob.nextInt();
+		int e=ob.nextInt();
+		int f=ob.nextInt();
+		
+			ex2 ob1=(y)->
+	{		return y*y;	};
+	System.out.println("The sqaure is "+ob1.square(s));
+	ex3 ob2=(z)->
+	{		return z*z*z;	};
+	System.out.println("The cube is "+ob2.cube(c));	
+	
+	ex4 ob3=(p,q)->
+	{	
+		if(p>q)	
+			return p;
+		else
+			return q;
+	};
+	System.out.println("The greatest is "+ob3.greater(a,b));	
+
+	ex5 ob4=(p,q,r)->
+	{	
+		if(p>q && p>r) 	
+			return p;
+		else if(q>r && q>p)
+			return q;
+		else
+			return r;
+	};
+	System.out.println("The greatest is "+ob4.greater3(d,e,f));	
+
+	
+	}}
+
+------------------------------------------------------------------------------------------------
+
+Map
+-------------------
+public class Customer
+{
+	double bal;
+String name,address;
+public Customer(double bal, String name, String address) 
+{
+	super();
+	this.bal = bal;
+	this.name = name;
+	this.address = address;
+}
+@Override
+public String toString() {
+	return "Customer [bal=" + bal + ", name=" + name + ", address=" + address + "]";
+}
+}
+----------------------------------------------------------------------------------------------------------------------------------
+import java.util.HashMap;
+import java.util.*;
+
+public class Bank
+{
+public static void main(String[] args) 
+{
+		Customer ob1=new Customer(5000,"sandip","Bangalore");
+		Customer ob2=new Customer(6000,"Kiran","Bangalore");
+		Customer ob3=new Customer(7000,"Madhu","Bangalore");
+		Customer ob4=new Customer(8000,"Sunil","Bangalore");
+HashMap<Integer, Customer> hm=new HashMap<Integer, Customer>();
+hm.put(101,ob1);
+hm.put(102,ob2);
+hm.put(103,ob3);
+hm.put(104,ob4);
+Scanner ob=new Scanner(System.in);
+System.out.println("Enter the account no you want to search");
+int x=ob.nextInt();
+
+for(Map.Entry<Integer, Customer> m: hm.entrySet())
+	if(m.getKey()==x)
+	System.out.println(m.getKey()+ "    "+m.getValue());
+}
+
+}
+----------------------------------------------------------------------------------------------------------------------------
+
+
+
+
+
+
+
+
+
