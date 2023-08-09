@@ -79,3 +79,69 @@ String name,address;
 
 }
 ---------------------------------------------------------------------------------------
+example-2
+-------------------
+package com.example.demo;
+import java.util.Scanner;
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.context.ApplicationContext;
+@SpringBootApplication
+public class SpringBoot1Application 
+{
+	public static void main(String[] args) 
+	{
+		ApplicationContext ac=SpringApplication.run(SpringBoot1Application.class, args);
+		MyClass mm=ac.getBean("obj",MyClass.class);
+		mm.welcome();
+		System.out.println("Enter two numbers");
+		Scanner ob=new Scanner(System.in);
+int a=ob.nextInt();
+int b=ob.nextInt();
+System.out.println("The sum is "+mm.sum(a, b));
+System.out.println("The sub is "+mm.sub(a, b));
+
+Employee emp=(Employee)ac.getBean("obj1");
+System.out.println("Enter empno,name,address");
+String empno=ob.next();
+String name=ob.next();
+String address=ob.next();
+
+emp.setEmpno(empno);
+emp.setName(name);
+emp.setAddress(address);
+
+System.out.println("the empno is "+emp.getEmpno());
+System.out.println("the name is "+emp.getName());
+System.out.println("the address is "+emp.getAddress());
+
+Employee2 emp2=(Employee2)ac.getBean("obj2");
+System.out.println("Enter empno,name,address");
+int empno1=ob.nextInt();
+String name1=ob.next();
+String address1=ob.next();
+emp2.input(empno1, name1, address1);
+emp2.display();	
+	}}
+---------------------------------------------------------------------------------------------
+package com.example.demo;
+import org.springframework.stereotype.Component;
+@Component("obj2")
+public class Employee2 
+{
+int empno;
+String name,address;
+public void input(int empno,String name,String address)
+{
+	this.empno=empno;
+	this.name=name;
+	this.address=address;
+}
+public void display()
+{
+	System.out.println("The empno is "+empno);
+	System.out.println("The name is "+name);
+	System.out.println("The address is "+address);
+	}
+}
+--------------------------------------------------------------------------------------------
