@@ -1,0 +1,81 @@
+package com.example.demo;
+import java.util.Scanner;
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.context.ApplicationContext;
+@SpringBootApplication
+public class SpringBoot1Application 
+{
+	public static void main(String[] args) 
+	{
+		ApplicationContext ac=SpringApplication.run(SpringBoot1Application.class, args);
+		MyClass mm=ac.getBean("obj",MyClass.class);
+		mm.welcome();
+		System.out.println("Enter two numbers");
+		Scanner ob=new Scanner(System.in);
+int a=ob.nextInt();
+int b=ob.nextInt();
+System.out.println("The sum is "+mm.sum(a, b));
+System.out.println("The sub is "+mm.sub(a, b));
+
+Employee emp=(Employee)ac.getBean("obj1");
+System.out.println("Enter empno,name,address");
+String empno=ob.next();
+String name=ob.next();
+String address=ob.next();
+emp.setEmpno(empno);
+emp.setName(name);
+emp.setAddress(address);
+System.out.println("the empno is "+emp.getEmpno());
+System.out.println("the name is "+emp.getName());
+System.out.println("the address is "+emp.getAddress());
+	}}
+---------------------------------------------------------------------------------------------------------
+package com.example.demo;
+import org.springframework.stereotype.Component;
+//shift+ctrl+O <-  shortcut key
+@Component("obj")
+public class MyClass 
+{
+public void welcome()
+{
+	System.out.println("Welcome to spring boot");
+}
+public int sum(int a,int b)
+{
+	return a+b;
+}
+public int sub(int a,int b)
+{
+	return a-b;
+}
+}
+-------------------------------------------------------------------------------------------------
+package com.example.demo;
+import org.springframework.stereotype.Component;
+@Component("obj1")
+public class Employee 
+{
+String empno;
+public String getEmpno() {
+	return empno;
+}
+public void setEmpno(String empno) {
+	this.empno = empno;
+}
+public String getName() {
+	return name;
+}
+public void setName(String name) {
+	this.name = name;
+}
+public String getAddress() {
+	return address;
+}
+public void setAddress(String address) {
+	this.address = address;
+}
+String name,address;
+
+}
+---------------------------------------------------------------------------------------
