@@ -479,7 +479,36 @@ class Product1{
     }  
 }
 ------------------------------------------------------------------------------------
+example-4
+-------------------
+package com.example.demo;
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.*;
+import java.util.Map;
+import java.util.stream.Collectors;
 
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+@SpringBootApplication
+public class SpringBoothappiestmind3Application {
+	public static void main(String[] args) throws IOException 
+	{
+		SpringApplication.run(SpringBoothappiestmind3Application.class, args);
+		
+		List<Product1> l = new ArrayList<Product1>();  
+        //Adding Products  
+        l.add(new Product1(1,"HP Laptop",25000f));  
+       l.add(new Product1(2,"Dell Laptop",30000f));  
+        l.add(new Product1(3,"Lenevo Laptop",28000f));  
+        l.add(new Product1(4,"Sony Laptop",28000f));  
+        l.add(new Product1(5,"Apple Laptop",90000f));  
+        
+        Map<Integer,String> pt2 = l.stream().collect(Collectors.toMap(p->p.id, p->p.name));     
+System.out.println(pt2);
+	}}
+-----------------------------------------------------------------------------------------------------------------------
 
 
 
