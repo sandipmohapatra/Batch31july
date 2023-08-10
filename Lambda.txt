@@ -350,53 +350,78 @@ public class Lambda3
 	}}
 
 ------------------------------------------------------------------------------------------------
-
-Map
--------------------
-public class Customer
-{
-	double bal;
-String name,address;
-public Customer(double bal, String name, String address) 
-{
-	super();
-	this.bal = bal;
-	this.name = name;
-	this.address = address;
-}
-@Override
-public String toString() {
-	return "Customer [bal=" + bal + ", name=" + name + ", address=" + address + "]";
-}
-}
-----------------------------------------------------------------------------------------------------------------------------------
-import java.util.HashMap;
-import java.util.*;
-
-public class Bank
-{
-public static void main(String[] args) 
-{
-		Customer ob1=new Customer(5000,"sandip","Bangalore");
-		Customer ob2=new Customer(6000,"Kiran","Bangalore");
-		Customer ob3=new Customer(7000,"Madhu","Bangalore");
-		Customer ob4=new Customer(8000,"Sunil","Bangalore");
-HashMap<Integer, Customer> hm=new HashMap<Integer, Customer>();
-hm.put(101,ob1);
-hm.put(102,ob2);
-hm.put(103,ob3);
-hm.put(104,ob4);
-Scanner ob=new Scanner(System.in);
-System.out.println("Enter the account no you want to search");
-int x=ob.nextInt();
-
-for(Map.Entry<Integer, Customer> m: hm.entrySet())
-	if(m.getKey()==x)
-	System.out.println(m.getKey()+ "    "+m.getValue());
-}
-
-}
-----------------------------------------------------------------------------------------------------------------------------
+Stream API
+------------------------------------------------
+example-1
+---------------
+import java.util.*;  
+class Product
+{  
+    int id;  
+    String name;  
+    float price;  
+    public Product(int id, String name, float price)
+    {  
+        this.id = id;  
+        this.name = name;  
+        this.price = price;  
+    }  
+}  
+public class JavaStreamExample1
+{  
+    public static void main(String[] args) 
+    {  
+        List<Product> l = new ArrayList<Product>();  
+        //Adding Products  
+        l.add(new Product(1,"HP Laptop",25000f));  
+        l.add(new Product(2,"Dell Laptop",30000f));  
+        l.add(new Product(3,"Lenevo Laptop",28000f));  
+        l.add(new Product(4,"Sony Laptop",28000f));  
+        l.add(new Product(5,"Apple Laptop",90000f));  
+        List<Float> pt = new ArrayList<Float>();  
+        for(Product product: l){  
+              
+            // filtering data of list  
+            if(product.price<30000)
+            {  
+                pt.add(product.price);    // adding price to a productPriceList  
+            }  
+        }  
+        System.out.println(pt);   // displaying data  
+    }  
+}  
+--------------------------------------------------------------------------------------------------------
+example-2
+----------------------
+import java.util.*;  
+import java.util.stream.Collectors;  
+class Product1{  
+    int id;  
+    String name;  
+    float price;  
+    public Product1(int id, String name, float price) {  
+        this.id = id;  
+        this.name = name;  
+        this.price = price;  
+    }  
+}  
+public class JavaStreamExample {  
+    public static void main(String[] args) {  
+        List<Product1> productsList = new ArrayList<Product1>();  
+        //Adding Products  
+        productsList.add(new Product1(1,"HP Laptop",25000f));  
+        productsList.add(new Product1(2,"Dell Laptop",30000f));  
+        productsList.add(new Product1(3,"Lenevo Laptop",28000f));  
+        productsList.add(new Product1(4,"Sony Laptop",28000f));  
+        productsList.add(new Product1(5,"Apple Laptop",90000f));  
+        List<Float> productPriceList2 =productsList.stream()  
+                                     .filter(p -> p.price < 30000)// filtering data  
+                                     .map(p->p.price)        // fetching price  
+                                     .collect(Collectors.toList()); // collecting as list  
+        System.out.println(productPriceList2);  
+    }  
+}  
+--------------------------------------------------------------------------------------------------------------------------
 
 
 
