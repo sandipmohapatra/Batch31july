@@ -1,0 +1,22 @@
+Wednesday Test
+---------------------------------------
+
+SpringBoot Rest API(PostMan)
+-------------------------------------
+Create employee model and do the following operations
+----------------------------------------------------------------------------
+public void addEmployee(Employee emp);
+public void editEmployee(Employee emp,int empid);
+public boolean deleteEmployee(int empid);
+public Book getEmployeeById(int empid);
+public List<Employee> getAllEmployee();
+------------------------------------------------------------------------------------------
+SpringBootData JPA
+-------------------------------
+create a Hospital management system
+1)Register
+2)Take doctor's appointment.
+3)Book Ambulance
+4)Book a Bed
+5)Feedback
+---------------------------------------------------------------------------------------------
