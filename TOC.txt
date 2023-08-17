@@ -1,0 +1,80 @@
+1)MySql-
+DDL(create,alter,drop,rename,trucate),
+DML(Insert,update,delete,select),
+DCL(grant,revoke),
+TCL(commit,rollback,savepoint)
+ACID,CRUD operation
+Java Data Base connectivity
+----------------------------------------------------------
+2)MongoD
+java data base connectivity
+-------------------------------------------------------------
+3)Basic Devops
+i)Maven-Dependences are automatically added
+ii)git and github--files from local machine to the global machine is stored.
+iii)docker :- to create image files.we cannot give the clients our code so we have to create image (iso) files and share with the client.It is known as containerization.
+iv)jenkin:- for testing our build.CI-CD (continous integration and continous development) pipeline.
+-----------------------------------------------------------------------------------------------------
+4)Java
+collection framework
+interface
+lambda expressions
+JUNIT
+Stream API
+Collectors
+Constructors,getter and setters
+----------------------------------------------------------------------
+5)Spring core(setter and constructor injections)
+Spring JDBC (JdbcTemplate )
+Spring AOP (aspect oriented Programming)
+Spring MVC
+Spring MVC with database
+-------------------------------------------------------------------------
+6)SpringBoot
+BootStaterproject
+POM.xml
+SpringbootData JPA(java persistance API)
+Entity class is the model class for craeting table.
+@Entity,@Table,@Id,@GeneratedValue,@Column
+
+JSP -java server pages
+MVC-model view controller
+------------------------------------------------------------------------------------------
+7)Rest webservices
+i)get--to retrive data
+ii)post --to insert data
+iii)put --to modify data
+iv)delete--to delete data
+@GetMapping
+@PostMapping
+@PutMapping
+@Deletemapping
+@RequestMapping
+@Controller --stereotype annotaion (compiler will come to know that it is a contoller)--return type is ModelandView
+@RestController--spring rest controller we use .It return type is either JSON or XML---return is only return.
+v)postman is used to test out Spring Rest webservices becouse our browser doesn't support post,put,delete
+---------------------------------------------------------------------------------
+8)MicroServices
+i)@EnableEurekaServer
+ii)@EnableEurekaClient
+-------------------------------------------------------------------------------
+projects:-
+Library Management System
+Employee Management System
+Hospital management
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
