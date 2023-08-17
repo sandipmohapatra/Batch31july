@@ -63,8 +63,32 @@ Library Management System
 Employee Management System
 Hospital management
 
-
-
+--------------------------------------------------------------------------
+while creating a project
+1)Entity class
+@Entity,@Table,@Id,@GeneratedValue,@Column
+It is used for creating table in MySql,MongoDb
+application.properties
+-------------------------------------------------------------------------------
+2)service :- It is a interface where we will metiontion all abstract methods.
+example:-
+public Integer saveCourse(Course c);
+public List<Course> getAllCourse();
+public Course getOneCourse(Integer id);
+------------------------------------------------------------------------------
+3)serviceImplement:-
+It will contain the service method's defination.
+--------------------------------------------------------------------------
+4)CourseRepository
+public interface CourseRepository extends CrudRepository<Course,Integer>
+{
+}
+-------------------------------------------------------------------------------------------------
+5)@RestController
+i)@GetMapping
+ii)@PostMapping
+iii)@PutMapping
+iv)@DeleteMapping
 
 
 
