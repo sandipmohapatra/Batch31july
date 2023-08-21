@@ -1,0 +1,9 @@
+MicroService using Postman
+--------------------------------------------------------------------------------
+create a Hospital management system
+1)Register
+2)Take doctor's appointment.
+3)Book Ambulance
+4)Book a Bed
+5)Feedback
+---------------------------------------------------------------------------------------------
