@@ -1,0 +1,422 @@
+				---------------------------------------
+Client-Server Authentication:-
+a. Stateful Authentication:
+
+    It will create one HTTP Session at server side when client is successfully authenticated
+    One Session-Id is provided and same is sent to client using Response as one Cookie
+    Client Machine, for next request onwards, submits Cookie to server,then server
+    verifies and provides service, until logout.
+
+    On click logout session will be invalidated.
+
+b. *** Stateless Authentication:-
+   It will never create any Memory at server side. 
+   For a client Authentication one unique number is generated ie called TOEKN.
+
+   Token can be created using SecretKey and even
+   Generated Token can be read using SecretKey.
+
+   This generated token is sent to client machine using Response.
+   Client has to send token using Request for 2nd request onwards..
+   Token is valid only for a period of time.
+
+** State means - Data of Client stored at Server
+  
+-----Stateless Authentication used at--------------------------------------------------
+a. Webservices Authentication (server - server)
+b. Horizontal Scaling (Microservices)
+c. Resource Grant (Open Authorization/OAuth)
+   Register/Login + Login with Google, Facebook
+
+Benifits:
+*) Stateless concept, never allocates any memory at server.
+*) It is good for Distributed Applications
+
+Limitations:
+*) Token must be validate on every request
+*) If Token is shared with others then they can access client data/services.
+
+===============================================================================
+  			  JWT (JSON Web Token)
+
+ JWT is a opensource service (API) that supports generating Token based on client
+ details and secretKey.
+---------------------------------
+JWT - JSON WEB TOKEN 
+  -> Token Based Authentication
+  -> Stateless Authentication (No Http Session)
+
+  JSON FORMAT:
+   {
+     key: val,..
+   }
+
+   JWT contains 3 parts
+   Header      = JWT Specific information
+   Payload     = Claims (clientId, clientName,provider Name, date, expDate..)
+   Signature   = Encode(Header) + Encode(Payload) <- SecretKey.
+
+   a. Generate JWT Token using JAVA
+   b. READ Token and validate Details using JAVA
+
+   JJWT -> JAVA JWT
+ <dependency>
+    <groupId>io.jsonwebtoken</groupId>
+    <artifactId>jjwt</artifactId>
+    <version>0.9.1</version>
+</dependency>
+
+  JWT Token
+  xxxxxxxxxxxxxxxxx.yyyyyyyyyyyyyyyyyyy.zzzzzzzzzzzzzzzzzzzzzz
+
+  eyJhbGciOiJIUzI1NiJ9.
+
+  eyJqdGkiOiJBQjEyNTYiLCJzdWIiOiJBSkFZIiwiaXNzIjoiTmFyZXNoSVQtSFlEIiw
+  iaWF0IjoxNTk4MTIxNTc1LCJleHAiOjE1OTgxMjIxNzV9.
+
+  p8fD-oQxMZW_5c-r4fe2W5Lj87wy_GG0qNaR952cjrs
+
+------------------------
+Claims : Get details of a JWT Token using Secret. [Parsing JWT Token]
+Input:
+ -> Token 
+ -> Secret
+
+==========code: JJWT====================================================
+#1. Create one Simple Maven Project
+
+#2. Add below details in pom.xml
+	<properties>
+		<maven.compiler.source>14</maven.compiler.source>
+		<maven.compiler.target>14</maven.compiler.target>
+	</properties>
+
+	<dependencies>
+		<dependency>
+			<groupId>io.jsonwebtoken</groupId>
+			<artifactId>jjwt</artifactId>
+			<version>0.9.1</version>
+		</dependency>
+
+		<dependency>
+			<groupId>javax.xml.bind</groupId>
+			<artifactId>jaxb-api</artifactId>
+			<version>2.3.0</version>
+		</dependency>
+	</dependencies>
+
+#3. Test class - Generating Token
+package in.nareshit.raghu.test;
+
+import java.util.Base64;
+import java.util.Date;
+import java.util.concurrent.TimeUnit;
+
+import io.jsonwebtoken.Jwts;
+import io.jsonwebtoken.SignatureAlgorithm;
+
+public class JwtTest {
+
+	public static void main(String[] args) {
+		String key = "NITRAGHU";
+
+		//Token Generation with details
+		String token = 
+			Jwts.builder()
+				.setId("AB1256") //client Id
+				.setSubject("AJAY") //clientName
+				.setIssuer("NareshIT-HYD") //provider Name
+				.setIssuedAt(new Date(System.currentTimeMillis())) //token gen Date
+				.setExpiration(new Date(System.currentTimeMillis()  //exp date
+						+ TimeUnit.MINUTES.toMillis(10) ))
+				.signWith(SignatureAlgorithm.HS256, //alog
+						Base64.getEncoder().encode(key.getBytes())) //secret key
+				.compact(); //convert to JWT STRING
+
+		System.out.println(token);
+
+		//-------------------
+		Claims c = 
+		Jwts.parser() //read token data
+		.setSigningKey(Base64.getEncoder().encode(key.getBytes())) //secret key
+		.parseClaimsJws(token) //token 
+		.getBody(); //claims data
+		
+		//print / validate ...
+		System.out.println(c.getId());
+		System.out.println(c.getSubject());
+		System.out.println(c.getIssuer());
+	}
+}
+
+
+-------UTIL class--------------
+package in.nareshit.raghu.util;
+
+import java.util.Base64;
+import java.util.Date;
+import java.util.concurrent.TimeUnit;
+
+import io.jsonwebtoken.Claims;
+import io.jsonwebtoken.Jwts;
+import io.jsonwebtoken.SignatureAlgorithm;
+
+public class JwtUtil {
+
+	//1. Generate JWT TOKEN
+	public String generateToken(
+			String id,
+			String subject,
+			String secret
+			) 
+	{
+
+		return Jwts.builder()
+				.setId(id)
+				.setSubject(subject)
+				.setIssuer("NareshIT")
+				.setIssuedAt(new Date(
+						System.currentTimeMillis()))
+				.setExpiration(new Date(
+						System.currentTimeMillis() + 
+						TimeUnit.MINUTES.toMillis(10)  ))
+				.signWith(SignatureAlgorithm.HS256, 
+						Base64.getEncoder().encode(secret.getBytes()))
+				.compact()
+				;
+	}
+
+
+	//2. GetClaims
+	public Claims getClaims(
+			String token,
+			String secret
+			) 
+	{
+
+		return Jwts.parser()
+				.setSigningKey(
+						Base64.getEncoder().encode(secret.getBytes()))
+				.parseClaimsJws(token)
+				.getBody()
+				;
+	}
+
+
+	public String getSubject(
+			String token,
+			String secret
+			) 
+	{
+		return getClaims(token, secret).getSubject();
+	}
+
+	public boolean isValidToken(
+			String token,
+			String secret
+			) 
+	{
+
+		//  now 12:01 PM < exp: 12:30 PM
+		return getClaims(token, secret).getExpiration()
+				.after(new Date(System.currentTimeMillis()));
+	}
+
+
+}
+--------------------------------------------------------------------------
+
+			   JWT Session-2
+		----------------------------------------------------------	
+
+  JWT - JSON WEB TOKEN
+  -> Token based Authentication
+  -> Stateless Authentication (NO HTTP SESSION)
+
+
+  JSON FORMAT:
+  { key:val,...}
+
+  JWT FORMAT :
+  Header     : JWT SPECIFIC INFORMATION
+  Payload    : Claims ( ClientId, ClientName, providerName, date, expDate..)
+  Signature  : Base64Encode(Header) + base64Encoder(Payload) <- SecretKey
+
+  Ex Token Format
+  xxxxxxxxxxxxxxxxxxxxxxx.yyyyyyyyyyyyyyyyyyyyyyy.zzzzzzzzzzzzzzzzz
+
+  Payload contains : Client Details, Provider Information, Exp Date...etc
+
+  HMAC - Has Based Message Authentication Code
+
+  =======================================================================
+  a. Generate Token using JWT Java API
+  b. Read and Validate Token usisng JWT Java API
+
+     Claims - Read/Parse JWT Details by providing two inputs
+         => Secret Key
+         => Token
+
+ JJWT - Java JWT API is a Open source Java API ->
+<dependency>
+    <groupId>io.jsonwebtoken</groupId>
+    <artifactId>jjwt</artifactId>
+    <version>0.9.1</version>
+</dependency>
+
+Ex JWT Token:
+ eyJhbGciOiJIUzI1NiJ9.
+ 
+ eyJqdGkiOiJBNTI2NiIsInN1YiI6IkFKQVkiLCJpc3MiO
+ iJOYXJlc2hJVCIsImlhdCI6MTU5ODEyNjQ0NCwiZXhwIjoxNTk4MTI3MDQ0fQ.
+ 
+ I-UCt4rl6WHvGbz7ZfGIwXx8rHAjMfO7eCcON272SRw
+
+=====================Code : Maven Appication=====================
+1. Create one simple maven project
+
+2. pom.xml
+
+	<properties>
+		<maven.compiler.source>14</maven.compiler.source>
+		<maven.compiler.target>14</maven.compiler.target>
+	</properties>
+	<dependencies>
+		<dependency>
+			<groupId>io.jsonwebtoken</groupId>
+			<artifactId>jjwt</artifactId>
+			<version>0.9.1</version>
+		</dependency>
+		<dependency>
+			<groupId>javax.xml.bind</groupId>
+			<artifactId>jaxb-api</artifactId>
+			<version>2.3.0</version>
+		</dependency>
+	</dependencies>
+
+3. Test class:
+package in.nareshit.raghu.test;
+
+import java.util.Base64;
+import java.util.Date;
+import java.util.concurrent.TimeUnit;
+
+import io.jsonwebtoken.Claims;
+import io.jsonwebtoken.Jwts;
+import io.jsonwebtoken.SignatureAlgorithm;
+
+public class Test {
+
+	public static void main(String[] args) {
+		String key ="NIT";
+
+
+		//token generation
+		String token =
+				Jwts.builder() 
+				.setId("A5266")//id
+				.setSubject("AJAY") //subject
+				.setIssuer("NareshIT") //provider
+				.setIssuedAt(new Date(System.currentTimeMillis())) //token gen date
+				.setExpiration(new Date(System.currentTimeMillis() + TimeUnit.MINUTES.toMillis(10) )) //valid until?
+				.signWith(SignatureAlgorithm.HS256, //sign Alog
+					Base64.getEncoder().encode(key.getBytes())) //secretkey
+				.compact(); //String
+		System.out.println(token);
+		
+		//---------Reading Token/Parsing token---
+		
+		Claims c = 
+		Jwts.parser()
+		.setSigningKey(
+		    Base64.getEncoder().encode(key.getBytes())) //secretkey
+		.parseClaimsJws(token)
+		.getBody();
+		
+		System.out.println(c.getSubject());
+		System.out.println(c.getId());
+		System.out.println(c.getIssuer());
+		System.out.println(c.getExpiration());
+		
+
+	}
+}
+=================JwtUtil==========================
+package in.nareshit.raghu.util;
+
+import java.util.Base64;
+import java.util.Date;
+import java.util.concurrent.TimeUnit;
+
+import io.jsonwebtoken.Claims;
+import io.jsonwebtoken.Jwts;
+import io.jsonwebtoken.SignatureAlgorithm;
+
+public class JwtUtil {
+
+	//1. generate token
+	public String generateToken(
+			String id,
+			String subject,
+			String key
+			) 
+	{
+		
+		return Jwts.builder()
+				.setId(id)
+				.setSubject(subject)
+				.setIssuer("NareshIT")
+				.setIssuedAt(new Date(System.currentTimeMillis()))
+				.setExpiration(
+						new Date(System.currentTimeMillis() 
+								+ TimeUnit.MINUTES.toMillis(10)  ))
+				.signWith(SignatureAlgorithm.HS256, 
+						Base64.getEncoder().encode(key.getBytes()))
+				.compact()
+				;
+	}
+
+	//2. get claims
+	public Claims getClaims(String key,String token) 
+	{
+		return Jwts.parser()
+				.setSigningKey(Base64.getEncoder().encode(key.getBytes()))
+				.parseClaimsJws(token)
+				.getBody()
+				;
+	}
+	
+	public String getSubject(String key,String token)  {
+		return getClaims(key, token).getSubject();
+	}
+
+	public boolean isValidToken(String key,String token) {
+		//  expDte > curr dte
+		return getClaims(key, token)
+				.getExpiration()
+				.after(new Date(System.currentTimeMillis()));
+	}
+	
+}
+
+
+--Test class--
+package in.nareshit.raghu.test;
+
+import in.nareshit.raghu.util.JwtUtil;
+import io.jsonwebtoken.Claims;
+
+public class Test {
+
+	public static void main(String[] args) {
+		JwtUtil util = new JwtUtil();
+		String token = 
+	//	System.out.println(token);
+		Claims c = util.getClaims("NITTEST", token);
+		System.out.println(c.getId());
+		System.out.println(c.getSubject());
+		System.out.println(c.getExpiration());
+
+	}
+}
+--------------------------------------------------------------------------------
